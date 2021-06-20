@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndroidStorage</string>
+    <string-array name="tab_tiles">
+        <item>Private Storage</item>
+        <item>Shared Storage</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="private_storage">Internal Storage</string>
+    <string name="shared_storage">Shared Storage</string>
 </resources>
