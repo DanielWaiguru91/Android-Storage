@@ -34,12 +34,17 @@ class ImageRepositoryImpl @Inject constructor(private val context: Context): Ima
     }
 
     override suspend fun loadImages(): List<InternalStoragePhoto> = withContext(Dispatchers.IO) {
-        context.filesDir?.listFiles()?.filter { file ->
-            file.canRead() && file.isFile && file.name.endsWith(".jpg")
-        }?.map {
-            val bytes = it.readBytes()
-            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            InternalStoragePhoto(it.name, bitmap)
-        } ?: listOf()
+        try {
+            context.filesDir?.listFiles()?.filter { file ->
+                file.canRead() && file.isFile && file.name.endsWith(".jpg")
+            }?.map {
+                val bytes = it.readBytes()
+                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+                InternalStoragePhoto(it.name, bitmap)
+            } ?: listOf()
+        } catch (e: Exception) {
+            listOf()
+        }
     }
 }
