@@ -1,33 +1,18 @@
 package dev.hashnode.danielwaiguru.androidstorage.adapters
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import dev.hashnode.danielwaiguru.androidstorage.databinding.PagerTitleItemBinding
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import dev.hashnode.danielwaiguru.androidstorage.ui.private_storage.PrivateStorageFragment
+import dev.hashnode.danielwaiguru.androidstorage.ui.shared_storage.SharedStorageFragment
 
 class PagerAdapter(
-    private val titles: List<String>): RecyclerView.Adapter<PagerAdapter.PagerViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
-        return PagerViewHolder(
-            PagerTitleItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
-    }
+    private val tiles: List<String>, fragmentManager: FragmentManager, lifecycle: Lifecycle
+): FragmentStateAdapter(fragmentManager, lifecycle) {
+    private val fragments = listOf(PrivateStorageFragment(), SharedStorageFragment())
+    override fun getItemCount(): Int = tiles.size
 
-    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        holder.bindItem(titles[position])
-    }
-
-    override fun getItemCount(): Int = titles.size
-
-    inner class PagerViewHolder(
-        private val binding: PagerTitleItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bindItem(title: String) {
-            with(binding) {
-                tileTile.text = title
-            }
-        }
-    }
+    override fun createFragment(position: Int): Fragment = fragments[position]
 
 }

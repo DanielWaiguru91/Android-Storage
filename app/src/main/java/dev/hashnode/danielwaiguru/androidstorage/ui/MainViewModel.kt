@@ -15,7 +15,10 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val imageRepo: ImageRepository): ViewModel() {
     private val _images: MutableLiveData<List<InternalStoragePhoto>> = MutableLiveData()
     val images: LiveData<List<InternalStoragePhoto>> get() = _images
-    fun getImages() {
+    init {
+        getImages()
+    }
+    private fun getImages() {
         viewModelScope.launch {
             _images.value = imageRepo.loadImages()
         }
