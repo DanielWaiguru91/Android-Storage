@@ -1,4 +1,7 @@
 package dev.hashnode.danielwaiguru.androidstorage
 
-class StorageApp {
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class StorageApp: Application()
