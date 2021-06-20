@@ -5,6 +5,6 @@ import java.util.*
 
 fun getDate(): String {
     val current = System.currentTimeMillis()
-    val formatter =  SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val formatter =  SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss", Locale.getDefault())
     return formatter.format(current)
 }
