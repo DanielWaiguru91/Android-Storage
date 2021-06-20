@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidStorage</string>
+    <string-array name="tab_tiles">
+        <item>Private Storage</item>
+        <item>Shared Storage</item>
+    </string-array>
 </resources>
